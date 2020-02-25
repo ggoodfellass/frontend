@@ -25,13 +25,17 @@ class App extends Component {
 
   handleMoreDetailsUpdate = (flightDetail) => {
     const { flightDetails } = this.state;
-    let foundIndex = flightDetails.findIndex(x => x.flightCode == flightDetail.flightCode);
+    let foundIndex = flightDetails.findIndex(x => x.id == flightDetail.id);
     flightDetails[foundIndex] = flightDetail;
     this.setState({ flightDetails })
   }
 
-  handleMoreDetailsDelete = (c) => {
-    console.log(c)
+  handleMoreDetailsDelete = (id) => {
+    console.log(id)
+    this.setState({
+      flightDetails: this.state.flightDetails.filter((fd) => fd._id !== id)
+    })
+    console.log(this.state.flightDetails)
   }
 
   componentDidMount() {

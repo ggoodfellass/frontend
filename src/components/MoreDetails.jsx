@@ -47,7 +47,6 @@ export default function FormDialog(props) {
   };
 
   const handleUpdate = () => {
-    console.log(props)
     axios({
       method: "patch",
       url: `http://localhost:5000/flight-details/${props.id}`,
@@ -58,12 +57,24 @@ export default function FormDialog(props) {
         handleMoreDetailsUpdate(response.data.flightDetail)
         setOpen(false);
         setUpdate(true)
-      }).catch(function (error) {
+      }).catch((error) => {
+        console.log(error)
+        console.log("Something went wrong")
       })
   }
 
   const handleDelete = () => {
-    handleMoreDetailsDelete("C")
+    axios({
+      method: "delete",
+      url: `http://localhost:5000/flight-details/${props.id}`
+      }).then((response) => {
+        handleMoreDetailsDelete(props.id)
+        setOpen(false);
+        setUpdate(true)
+      }).catch((error) => {
+        console.log(error)
+        console.log("Something went wrong")
+      })
   }
 
   const statusUpdated = (e) => {
