@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Chip from "@material-ui/core/Chip";
 
 import MoreDetails from "./MoreDetails";
@@ -68,7 +66,7 @@ export default function FlightDetails(props) {
             </Grid>
             <Grid item>
               <Chip
-                className={classes.chip + " " + (props.status == "DELAYED" ? classes.secondary : classes.primary)}
+                className={classes.chip + " " + (props.status === "DELAYED" ? classes.secondary : classes.primary)}
                 label={props.status}
               />
             </Grid>
