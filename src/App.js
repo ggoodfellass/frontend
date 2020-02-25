@@ -25,7 +25,8 @@ class App extends Component {
 
   handleMoreDetailsUpdate = (flightDetail) => {
     const { flightDetails } = this.state;
-    flightDetails.push(flightDetail)
+    let foundIndex = flightDetails.findIndex(x => x.flightCode == flightDetail.flightCode);
+    flightDetails[foundIndex] = flightDetail;
     this.setState({ flightDetails })
   }
 

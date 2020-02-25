@@ -56,6 +56,8 @@ export default function FormDialog(props) {
         }
       }).then((response) => {
         handleMoreDetailsUpdate(response.data.flightDetail)
+        setOpen(false);
+        setUpdate(true)
       }).catch(function (error) {
       })
   }
