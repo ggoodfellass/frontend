@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from 'react';
+import moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -40,31 +41,30 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function FlightDetails() {
+export default function FlightDetails(props) {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={10}>
           <Grid item>
-            <b>17:50</b>
+            <b>{moment(props.scheduledArrival).format("HH:mm")}</b>
           </Grid>
           <Grid item xs={5} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs align="left" className={classes.leftBorder}>
                 <Typography gutterBottom variant="subtitle1">
-                  <b>Frankfurt FRA</b>
+                  <b>{props.sourcePortName}</b>
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  LH980A Lufthansa
+                  {props.flightCode} {props.flightProvider}
                 </Typography>
               </Grid>
             </Grid>
             <Grid item>
               <Chip
-                className={classes.chip + " " + classes.primary}
-                label="LANDED"
+                className={classes.chip + " " + (props.status == "DELAYED" ? classes.secondary : classes.primary)}
+                label={props.status}
               />
             </Grid>
           </Grid>
@@ -72,7 +72,7 @@ export default function FlightDetails() {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs align="left" className={classes.leftBorder} m={1}>
                 <Typography gutterBottom variant="subtitle1">
-                  Terminal1
+                  {props.destinationPortName}
                 </Typography>
               </Grid>
             </Grid>
