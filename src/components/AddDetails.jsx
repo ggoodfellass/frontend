@@ -44,12 +44,26 @@ export default function AddDetails(props) {
   let handleAddDetails  = props.handleAddDetails;
 
   const handleClickOpen = () => {
+    clearInputs()
     setOpen(true);
   };
 
   const handleClose = () => {
+    clearInputs()
     setOpen(false);
   };
+
+  const clearInputs = () => {
+    setFlightCode("")
+    setFlightProvider("")
+    setSourcePortName("")
+    setSourcePortCode("")
+    setDestinationPortName("")
+    setDestinationPortCode("")
+    setScheduledArrival("")
+    setScheduledDeparture("")
+    setStatus("")
+  }
 
   const handleSubmit = () => {
     axios({
@@ -70,7 +84,9 @@ export default function AddDetails(props) {
         if (showError) {
           toggleShowError(!showError)
         }
+        clearInputs()
         handleAddDetails(response.data.flightDetail)
+        setOpen(false);
       }).catch(function (error) {
         setErrorMessage(error.response.data.message[0])
         toggleShowError(!showError)
