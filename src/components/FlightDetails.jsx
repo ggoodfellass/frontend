@@ -8,6 +8,8 @@ import Button from "@material-ui/core/Button";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Chip from "@material-ui/core/Chip";
 
+import MoreDetails from "./MoreDetails";
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -42,7 +44,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function FlightDetails(props) {
+  let handleMoreDetailsUpdate  = props.handleMoreDetailsUpdate;
+  let handleMoreDetailsDelete  = props.handleMoreDetailsDelete;
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -77,13 +82,20 @@ export default function FlightDetails(props) {
               </Grid>
             </Grid>
             <Grid item>
-              <Button
-                variant="text"
-                className={classes.button}
-                endIcon={<ArrowForwardIcon />}
-              >
-                More Details
-              </Button>
+              <MoreDetails
+                id={props.id}
+                flightCode={props.flightCode}
+                flightProvider={props.flightProvider}
+                sourcePortName={props.sourcePortName}
+                sourcePortCode={props.sourcePortCode}
+                destinationPortName={props.destinationPortName}
+                destinationPortCode={props.destinationPortCode}
+                scheduledArrival={props.scheduledArrival}
+                scheduledDeparture={props.scheduledDeparture}
+                status={props.status}
+                handleMoreDetailsUpdate={handleMoreDetailsUpdate}
+                handleMoreDetailsDelete={handleMoreDetailsDelete}
+              />
             </Grid>
           </Grid>
         </Grid>

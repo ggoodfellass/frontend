@@ -23,6 +23,16 @@ class App extends Component {
     this.setState({ flightDetails })
   }
 
+  handleMoreDetailsUpdate = (flightDetail) => {
+    const { flightDetails } = this.state;
+    flightDetails.push(flightDetail)
+    this.setState({ flightDetails })
+  }
+
+  handleMoreDetailsDelete = (c) => {
+    console.log(c)
+  }
+
   componentDidMount() {
     this.callAPI()
   }
@@ -44,6 +54,8 @@ class App extends Component {
             scheduledArrival={item.scheduledArrival}
             scheduledDeparture={item.scheduledDeparture}
             status={item.status}
+            handleMoreDetailsUpdate = {this.handleMoreDetailsUpdate}
+            handleMoreDetailsDelete = {this.handleMoreDetailsDelete}
            />
         ))}
       </div>
